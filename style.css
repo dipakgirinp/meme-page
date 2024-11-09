@@ -66,6 +66,7 @@ header{
   font-size: 22;
   letter-spacing: .9;
   font-weight: 450;
+  z-index: 100;
 }
 
 .disclamer-div{
