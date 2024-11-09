@@ -35,9 +35,22 @@ p{
 @media (max-width:707px) {
   .grid{
     grid-template-columns: 1fr;
+    padding: 0;
   }
 
-  
+  .meme{
+    height: 470;
+    width: 410;
+  }
+
+  .disclamer{
+   font-size: 12;
+   padding: 0 5;
+  }
+
+  .container{
+    box-shadow: 0px 0px 50px rgb(108, 102, 102);
+  }
 }
 
 header{
@@ -46,6 +59,7 @@ header{
   background-color: black;
   color: white;
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
   height: 50;
@@ -54,15 +68,26 @@ header{
   font-weight: 450;
 }
 
-.disclamer{
-  background-color: rgb(234, 127, 98);
+.disclamer-div{
+  background-color: rgb(228, 124, 95);
+  background-color: rgb(252, 105, 72);
   color: rgb(211, 207, 207);
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
   font-size: 16;
   margin-bottom: 50px;
   padding: 3 7 3 7;
+}
+
+.disclamer-div img{
+  height:11;
+  width: auto;
+}
+
+.disclamer{
+
 }
 
 .container{
@@ -72,7 +97,7 @@ header{
   max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0px 0px 20px rgb(84, 81, 81);
+  box-shadow: 0px 0px 30px rgb(108, 102, 102);
   transition: .15s;
 }
 
@@ -106,5 +131,5 @@ video,img{
 .date{
   color: rgb(157, 157, 157);
   font-size: 11;
-  margin: 4px 0px 9px 0px;
+  margin: 9px 0px 12px 0px;
 }
