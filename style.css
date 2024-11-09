@@ -51,6 +51,10 @@ p{
   .container{
     box-shadow: 0px 0px 50px rgb(108, 102, 102);
   }
+
+  .lc{
+    margin-bottom: 100px;
+  }
 }
 
 header{
@@ -87,9 +91,6 @@ header{
   width: auto;
 }
 
-.disclamer{
-
-}
 
 .container{
   background-color: azure;
