@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BMS MEMES</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
@@ -11,12 +11,19 @@
 
 <body>
 
-  <header >
-    <div>BMS MEMES</div>
+  <header>
+    <div class="home-div">
+      <a href="index">
+        <img class="home" src="icons/home.svg" alt="home">
+      </a>
+    </div>
+    <div class="title">BMS MEMES</div>
   </header>
 
   <div class="disclamer-div">
-  <p class="disclamer"><img src="warning.svg">This page is intended solely for entertainment purposes and does not aim to offend or harm anyone <img src="warning.svg"></p>
+    <marquee behavior="loop" direction="left">
+      <p class="disclamer"><img src="warning.svg">This page is intended solely for entertainment purposes and does not aim to offend or harm anyone <img src="warning.svg"></p>
+    </marquee>
   </div>
 
   <main class="grid">
@@ -35,7 +42,7 @@
     </div>
 
 
-    <div class="container">
+    <div class="container lc">
       <div class="meme">
         <video controls autoplay loop muted>
           <source src="memes/video/meme2.mp4">
@@ -44,18 +51,6 @@
 
       <div class="info">
         <p class="title">🔥🕺🕺</p>
-        <p class="date">2024/8/11</p>
-      </div>
-    </div>
-
-
-    <div class="container lc">
-      <div class="meme">
-        <img src="memes/image/meme3.webp">
-      </div>
-
-      <div class="info">
-        <p class="title">how is that possible 🤯</p>
         <p class="date">2024/8/11</p>
       </div>
     </div>

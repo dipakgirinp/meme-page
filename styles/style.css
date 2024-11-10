@@ -61,16 +61,27 @@ header{
   position: sticky;
   top: 0;
   background-color: black;
-  color: white;
   display: flex;
-  flex: 1;
-  justify-content: center;
   align-items: center;
-  height: 50;
+  z-index: 100;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+  flex: 1;
   font-size: 22;
   letter-spacing: .9;
   font-weight: 450;
-  z-index: 100;
+  color: white;
+}
+
+.home-div{
+  width: 50px;
+}
+
+header img{
+ scale: .5;
 }
 
 .disclamer-div{
@@ -81,9 +92,10 @@ header{
   flex: 1;
   justify-content: center;
   align-items: center;
-  font-size: 16;
+  font-size: 13;
   margin-bottom: 50px;
   padding: 3 7 3 7;
+  cursor:default;
 }
 
 .disclamer-div img{
@@ -99,8 +111,9 @@ header{
   max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0px 0px 30px rgb(108, 102, 102);
+  box-shadow: 0px 0px 40px rgb(108, 102, 102);
   transition: .15s;
+  cursor: default;
 }
 
 .container:hover{
