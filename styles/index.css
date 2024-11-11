@@ -12,6 +12,9 @@ body{
   min-width: 342px;
 }
 
+*{
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 
 header{
   position: sticky;
