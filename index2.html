@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DAMI MEMES</title>
   <link rel="icon" type="image/x-icon" href="icons/skull.png">
-  <link rel="stylesheet" href="styles/video.css">
+  <link rel="stylesheet" href="styles/index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
@@ -12,50 +12,26 @@
 
 <body>
   <div class="wrapper">
-    <header>
-      <div class="home-div">
-        <a href="index">
-          <img class="home" src="icons/home.svg" alt="home">
-        </a>
-      </div>
-      <div class="title">DAMI MEMES</div>
+    <header >
+      <div>DAMI MEMES</div>
     </header>
   
     <div class="disclamer-div">
-      <marquee behavior="loop" direction="left">
+      <marquee behavior="loop"direction="left">
         <p class="disclamer"><img src="icons/warning.svg">This page is intended solely for entertainment purposes and does not aim to offend or harm anyone <img src="icons/warning.svg"></p>
       </marquee>
     </div>
   
-    <main class="grid">
+    <main>
+      <div class="buttons">
+        <a class="video-link" href="videos">
+          <button class="video">VIDEOS</button>
+        </a>
   
-      <div class="container">
-        <div class="meme">
-          <video controls autoplay loop muted>
-            <source src="memes/video/meme1.mp4">
-          </video>
-        </div>
-  
-        <div class="info">
-          <p class="title">what's the point 💀 </p>
-          <p class="date">2024/8/11</p>
-        </div>
+        <a class="image-link" href="images">
+          <button class="image">IMAGES</button>
+        </a>
       </div>
-  
-  
-      <div class="container lc">
-        <div class="meme">
-          <video controls autoplay loop muted>
-            <source src="memes/video/meme2.mp4">
-          </video>
-        </div>
-  
-        <div class="info">
-          <p class="title">🔥🕺🕺</p>
-          <p class="date">2024/8/11</p>
-        </div>
-      </div>
-  
     </main>
   </div>
   <div class="try-again">website available only in mobile devies</div>
