@@ -1,3 +1,49 @@
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCVddiVTBwWU3Yh4d5tl5oulZQrfOby3to",
+  authDomain: "meme-page-9669a.firebaseapp.com",
+  projectId: "meme-page-9669a",
+  storageBucket: "meme-page-9669a.firebasestorage.app",
+  messagingSenderId: "889982386712",
+  appId: "1:889982386712:web:338ef22bb46af8f865b96d",
+  measurementId: "G-N52JJTVGE0"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Fetch existing memes from Firebase
+async function loadMemes() {
+  const memeGrid = document.getElementById("memeGrid");
+
+  try {
+    const querySnapshot = await db.collection("memes").get();
+    querySnapshot.forEach((doc) => {
+      const meme = doc.data();
+
+      const memeCard = document.createElement("div");
+      memeCard.className = "container lc";
+      memeCard.innerHTML = `
+        <div class="meme">
+          <img src="${meme.url}" alt="${meme.title}">
+        </div>
+        <div class="info">
+          <p class="title">${meme.title}</p>
+          <p class="date">${meme.date}</p>
+        </div>
+      `;
+      memeGrid.appendChild(memeCard);
+    });
+  } catch (error) {
+    console.error("Error loading memes:", error);
+  }
+}
+
+// Call the loadMemes function on page load
+window.onload = loadMemes;
+
+// Upload a new meme
 document.getElementById("uploadForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
@@ -27,18 +73,18 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
 
     if (result.success) {
       const imageUrl = result.data.url;
-      const currentDate = new Date().toISOString().split("T")[0]; // Get the current date
-      const memeId = result.data.id; // Unique identifier from imgbb
+      const currentDate = new Date().toISOString().split("T")[0];
 
-      // Save meme ID in localStorage
-      const uploadedMemes = JSON.parse(localStorage.getItem("uploadedMemes")) || [];
-      uploadedMemes.push(memeId);
-      localStorage.setItem("uploadedMemes", JSON.stringify(uploadedMemes));
+      // Save meme to Firebase
+      await db.collection("memes").add({
+        title: memeTitle,
+        url: imageUrl,
+        date: currentDate,
+      });
 
-      // Create a new meme card
+      // Add the new meme to the grid
       const memeCard = document.createElement("div");
       memeCard.className = "container lc";
-      memeCard.setAttribute("data-id", memeId); // Assign meme ID to the container
       memeCard.innerHTML = `
         <div class="meme">
           <img src="${imageUrl}" alt="${memeTitle}">
@@ -46,16 +92,8 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
         <div class="info">
           <p class="title">${memeTitle}</p>
           <p class="date">${currentDate}</p>
-          <button class="delete-btn">Delete</button>
         </div>
       `;
-
-      // Attach delete functionality to the button
-      memeCard.querySelector(".delete-btn").addEventListener("click", function () {
-        deleteMeme(memeCard, memeId);
-      });
-
-      // Add the new meme card to the grid
       memeGrid.prepend(memeCard);
 
       // Clear the upload form
@@ -64,42 +102,10 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
       alert("Image upload failed. Please try again.");
     }
   } catch (error) {
-    console.error("Error uploading image:", error);
+    console.error("Error uploading meme:", error);
     alert("An error occurred. Please try again.");
   }
 });
-
-// Function to delete a meme
-function deleteMeme(memeCard, memeId) {
-  const uploadedMemes = JSON.parse(localStorage.getItem("uploadedMemes")) || [];
-  if (uploadedMemes.includes(memeId)) {
-    memeCard.remove(); // Remove meme from the grid
-
-    // Update localStorage
-    const updatedMemes = uploadedMemes.filter(id => id !== memeId);
-    localStorage.setItem("uploadedMemes", JSON.stringify(updatedMemes));
-  } else {
-    alert("You can only delete memes you uploaded.");
-  }
-}
-
-// Check existing memes and show delete button only for user-uploaded ones
-document.querySelectorAll(".container").forEach(memeCard => {
-  const memeId = memeCard.getAttribute("data-id");
-  const uploadedMemes = JSON.parse(localStorage.getItem("uploadedMemes")) || [];
-  
-  // Skip memes without a valid data-id or those not uploaded by the user
-  if (memeId && uploadedMemes.includes(memeId)) {
-    const deleteBtn = document.createElement("button");
-    deleteBtn.className = "delete-btn";
-    deleteBtn.textContent = "Delete";
-    deleteBtn.addEventListener("click", function () {
-      deleteMeme(memeCard, memeId);
-    });
-    memeCard.querySelector(".info").appendChild(deleteBtn);
-  }
-});
-
 
 
 
