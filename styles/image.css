@@ -1,6 +1,6 @@
 body{
   --dot-bg: rgb(23, 23, 23);
-  --dot-color: white;
+  --dot-color: rgb(91, 88, 88);
   --dot-size: 1px;
   --dot-space: 22px;
 	background:
@@ -43,7 +43,7 @@ p{
     display: block;
     color: rgb(255, 255, 255);
     text-align: center;
-    margin-top: 50%;
+    margin-top: 200;
     font-size: 50;
     font-weight: 700;
     letter-spacing: 2.5;
