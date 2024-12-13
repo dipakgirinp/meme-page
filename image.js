@@ -1,3 +1,4 @@
+
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCVddiVTBwWU3Yh4d5tl5oulZQrfOby3to",
@@ -74,6 +75,7 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
     if (result.success) {
       const imageUrl = result.data.url;
       const currentDate = new Date().toISOString().split("T")[0];
+      console.log("Image uploaded successfully:", result.data.url);
 
       // Save meme to Firebase
       await db.collection("memes").add({
