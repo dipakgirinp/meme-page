@@ -1,4 +1,3 @@
-
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCVddiVTBwWU3Yh4d5tl5oulZQrfOby3to",
@@ -11,10 +10,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
-// Fetch existing memes from Firebase
+// Function to load memes from Firestore
 async function loadMemes() {
   const memeGrid = document.getElementById("memeGrid");
 
@@ -41,10 +40,10 @@ async function loadMemes() {
   }
 }
 
-// Call the loadMemes function on page load
+// Call loadMemes when the page loads
 window.onload = loadMemes;
 
-// Upload a new meme
+// Function to upload a new meme
 document.getElementById("uploadForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
@@ -53,12 +52,8 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
   const memeTitle = document.getElementById("title").value.trim();
   const memeGrid = document.getElementById("memeGrid");
 
-  if (!imageFile) {
-    alert("Please select an image to upload!");
-    return;
-  }
-  if (!memeTitle) {
-    alert("Please enter a title for your meme!");
+  if (!imageFile || !memeTitle) {
+    alert("Please select an image and enter a title!");
     return;
   }
 
@@ -75,9 +70,8 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
     if (result.success) {
       const imageUrl = result.data.url;
       const currentDate = new Date().toISOString().split("T")[0];
-      console.log("Image uploaded successfully:", result.data.url);
 
-      // Save meme to Firebase
+      // Save to Firestore
       await db.collection("memes").add({
         title: memeTitle,
         url: imageUrl,
@@ -98,7 +92,7 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
       `;
       memeGrid.prepend(memeCard);
 
-      // Clear the upload form
+      // Clear the form
       document.getElementById("uploadForm").reset();
     } else {
       alert("Image upload failed. Please try again.");
